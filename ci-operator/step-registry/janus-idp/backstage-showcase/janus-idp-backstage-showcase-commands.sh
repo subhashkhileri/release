@@ -34,7 +34,7 @@ fi
 
 export K8S_CLUSTER_URL K8S_CLUSTER_TOKEN
 K8S_CLUSTER_URL=$(oc whoami --show-server)
-echo "K8S_CLUSTER_URL: $K8S_CLUSTER_URL"
+# echo "K8S_CLUSTER_URL: $K8S_CLUSTER_URL"
 oc create serviceaccount tester-sa-2 -n default
 oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:default:tester-sa-2
 K8S_CLUSTER_TOKEN=$(oc create token tester-sa-2 -n default)
@@ -47,8 +47,12 @@ GITHUB_ORG_NAME="janus-idp"
 GITHUB_REPOSITORY_NAME="backstage-showcase"
 
 # Clone and checkout the specific PR
-git clone "https://github.com/${GITHUB_ORG_NAME}/${GITHUB_REPOSITORY_NAME}.git"
+# git clone "https://github.com/${GITHUB_ORG_NAME}/${GITHUB_REPOSITORY_NAME}.git"
+# cd backstage-showcase || exit
+
+git clone "https://github.com/subhashkhileri/backstage-showcase.git"
 cd backstage-showcase || exit
+git checkout logging-update || exit
 
 git config --global user.name "rhdh-qe"
 git config --global user.email "rhdh-qe@redhat.com"
